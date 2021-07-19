@@ -68,4 +68,10 @@ def create_app():
         else:
             return redirect(url_for("login"))
 
+    @app.route("/logout")
+    def logout():
+        session.pop('loggedin', None)
+        session.pop('name', None)
+        return redirect(url_for('login'))
+
     return app
