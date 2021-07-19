@@ -30,10 +30,13 @@ def create_app():
                     session['name']=account[1]
                     return redirect(url_for("dashboard"))
                 else:
-                    return "wrong password!"
+                    return "Wrong password!"
             else:
                 return "Account doesn't Exist"
         else:
+            if 'loggedin' in session:
+                name = session['name']
+                return render_template('dashboard.html', name=name)
             return render_template('auth/login.html')
 
     @app.route("/register", methods =['GET', 'POST'])
