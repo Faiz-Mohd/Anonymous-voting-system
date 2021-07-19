@@ -80,10 +80,11 @@ input{
 }
 #submit{
   width:60%;
-  padding:12px;
+  padding:8px;
   margin-top:10px;
   background-color:#fc3565;
   border:none;
+  border-radius:5px;
   color:white;
   cursor:pointer;
   font-family:poppins;
