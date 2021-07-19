@@ -1,10 +1,12 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, session,redirect,url_for
 
 def create_app():
     app = Flask("new")
     app.config.from_mapping(
         DATABASE="mydb"
     )
+    app.secret_key = 'secret'
+
     from . import db
     db.init_app(app)
 
@@ -29,7 +31,18 @@ def create_app():
             else:
                 curs.execute("insert into users(name,email,password) values (%s, %s, %s)", (name, email, password))
                 conn.commit()
-                return render_template('index.html',name=name)
+                session['loggedin'] = True
+                session['name'] = name
+                return redirect(url_for("dashboard"))
         else:
             return render_template('auth/register.html')
+
+    @app.route("/dashboard")
+    def dashboard():
+        if 'loggedin' in session:
+            name = session['name']
+            return render_template('dashboard.html',name=name)
+        else:
+            return redirect(url_for("login"))
+
     return app
