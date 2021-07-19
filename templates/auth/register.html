@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+<main id="main">
+   <div class="header">
+       <h2 id="title">Register Form</h2>
+       <p id="description">Please Register by filling the form:</p>
+   </div>
+  <div class="form-div">
+  <form id="survey-form" action="/register" method="post">
+    <div class="form-elements">
+        <label id="name-label">Name : </label>
+   <input type="text" id="name" placeholder="Enter your name" name="name" required/>
+        <label id="email-label">Email : </label>
+    <input type="email" id="email" placeholder="Enter your email" name="email" required/>
+    <label id="pass-label">Password : </label>
+        <input type="password" id="pass"  placeholder="Enter your password" name="password" required/>
+            <label id="cpass-label">Confirm Password : </label>
+        <input type="password" id="cpass"  placeholder="Confirm your password" name="cpassword" required/>
+        <div class="btn-div"><button type="submit" id="submit"> Register</button></div>
+        <hr>
+      <p class="text-center">Already Registered ? Please goto <a href="/login">Log in</a> page.</p>
+    </div>
+
+  </form>
+    </div>
+</main>
+{% endblock %}

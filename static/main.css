@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body {
+  background: #282931;
+  font-family: 'Varela Round', sans-serif;
+  height: 100%;
+}
+h1{
+  color: #fc3565;
+  font-size: 4rem;
+  font-weight: bold;
+}
+p{
+    color:white;
+    font-size:20px;
+}
+.row-flex{
+    display:flex;
+    justify-content:center;
+}
+.btn{
+    background-color:#282931;
+    border:1px solid #fc3565;
+    color:#fc3565;
+}
+.btn:hover{
+    background-color:#fc3565;
+    color:white;
+}
+#title{
+   font-family:poppins;
+   text-align:center;
+   margin-bottom:0px;
+   color: #fc3565;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top:10px;
+}
+#description{
+  font-family:poppins;
+  text-align:center;
+  margin-top:5px;
+}
+.form-div{
+  width:40%;
+  margin:0 auto;
+
+}
+#survey-form{
+  background-color:rgba(62, 63, 69,0.6);
+  padding : 20px;
+  border: 2px;
+  border-radius: 5px;
+}
+.form-elements{
+  padding:30px;
+}
+label{
+  color:white;
+  font-family:poppins;
+  display:block;
+}
+input{
+  background-color:#282931;
+  color:white;
+  width:100%;
+  padding:5px;
+  padding-left:10px;
+  line-height: 2;
+  border: 2px;
+  border-radius: 4px;
+  margin-bottom:20px;
+  margin-top:8px;
+  font-family:poppins;
+}
+
+.btn-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#submit{
+  width:60%;
+  padding:12px;
+  margin-top:10px;
+  background-color:#fc3565;
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-family:poppins;
+  font-size:20px;
+  font-weight:bold;
+}
+hr{
+background-color:white;
+}
+
+
+
+p>a{
+color:#fc3565;
+}
+

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container text-center mt-5">
+        <h1>Hi {{name}}</h1>
+        <br>
+        <div class="row-flex">
+        <div class="col-8">
+        <p>This is a sample website made for learning Flask, a micro framework for webdevelopment in python.
+            If you are not registered, please register by clicking on Register button below, or if you have already registered
+            please log in to continue.</p>
+        </div>
+        </div>
+        <div class="row-flex">
+
+        <a href="/login"><button class="btn mr-5">Log In</button></a>
+        <a href="/register"><button class="btn">Register</button></a>
+        </div>
+    </div>
+{% endblock %}
