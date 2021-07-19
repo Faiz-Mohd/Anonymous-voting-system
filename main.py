@@ -1,5 +1,6 @@
 from flask import Flask, render_template,request, session,redirect,url_for
 
+
 def create_app():
     app = Flask("new")
     app.config.from_mapping(
@@ -13,9 +14,28 @@ def create_app():
     @app.route("/")
     def index():
         return render_template('index.html')
-    @app.route("/login")
+
+    @app.route("/login", methods =['GET', 'POST'])
     def login():
-        return render_template('auth/login.html')
+        if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+            email = request.form['email']
+            password = request.form['password']
+            conn = db.get_db()
+            curs = conn.cursor()
+            curs.execute("select * from users where email = %s", (email, ))
+            account = curs.fetchone()
+            if account:
+                if account[3]==password:
+                    session['loggedin']=True
+                    session['name']=account[1]
+                    return redirect(url_for("dashboard"))
+                else:
+                    return "wrong password!"
+            else:
+                return "Account doesn't Exist"
+        else:
+            return render_template('auth/login.html')
+
     @app.route("/register", methods =['GET', 'POST'])
     def register():
         if request.method == 'POST' and 'name' in request.form and 'password' in request.form and 'cpassword' in request.form and 'email' in request.form:
@@ -29,7 +49,7 @@ def create_app():
             if account:
                 return "Account already Exists!"
             else:
-                curs.execute("insert into users(name,email,password) values (%s, %s, %s)", (name, email, password))
+                curs.execute("insert into users(name,email,password) values (%s, %s, %s)", (name, email, password, ))
                 conn.commit()
                 session['loggedin'] = True
                 session['name'] = name
