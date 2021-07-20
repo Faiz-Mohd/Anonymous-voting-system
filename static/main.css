@@ -102,16 +102,30 @@ color:#fc3565;
 
 #error{
     display:none;
-    padding-left:20px;
+    padding-left:20%;
     padding-right:10px;
     justify-content:space-between;
-    font-size:20px;
+    font-size:15px;
     background-color:#fc5876;
     margin-top:0px;
     margin-bottom:10px;
 }
 #error-p{
-margin-bottom:0px !important;
+    margin-bottom:0px !important;
+}
+#acc-error{
+    display:flex;
+    padding:2px;
+    padding-left:20%;
+    padding-right:10px;
+    justify-content:space-between;
+    font-size:15px;
+    background-color:#fc5876;
+    margin-top:0px;
+    margin-bottom:10px;
+}
+#acc-error-p{
+    margin-bottom:0px !important;
 }
 
 

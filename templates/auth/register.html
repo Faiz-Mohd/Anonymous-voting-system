@@ -8,6 +8,12 @@
   <div class="form-div">
   <form id="survey-form" action="/register" method="post">
     <div class="form-elements">
+      {% if msg=="Account already Exists" %}
+        <div id="acc-error">
+            <p id="acc-error-p">{{msg}}</p>
+            <span class="close">&times;</span>
+        </div>
+       {% endif %}
         <div id="error">
             <p id="error-p"></p>
             <span class="close">&times;</span>
@@ -35,7 +41,9 @@
     var pass2 = document.getElementById('cpass').value;
 
     var modal=document.getElementById('error');
-    if(pass!=pass2){
+    modal.style.display = "none";
+
+    if(pass1!=pass2){
         modal.style.display = "flex";
         document.getElementById("error-p").innerHTML = "Passwords Doesn't Match";
         return false;
@@ -44,9 +52,11 @@
         return true;
     }
 }
-        var modal=document.getElementById('error');
+          var modal1=document.getElementById('error');
+          var modal2=document.getElementById('acc-error');
           $(".close").click(function(){
-            modal.style.display = "none"
+            modal1.style.display = "none"
+            modal2.style.display = "none"
           });
 </script>
 {% endblock %}

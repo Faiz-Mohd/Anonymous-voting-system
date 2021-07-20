@@ -49,7 +49,7 @@ def create_app():
             curs.execute("select * from users where email = %s", (email, ))
             account = curs.fetchone()
             if account:
-                return "Account already Exists!"
+                return render_template('auth/register.html',msg="Account already Exists")
             else:
                 curs.execute("insert into users(name,email,password) values (%s, %s, %s)", (name, email, password, ))
                 conn.commit()
