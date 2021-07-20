@@ -8,6 +8,10 @@
   <div class="form-div">
   <form id="survey-form" action="/register" method="post">
     <div class="form-elements">
+        <div id="error">
+            <p id="error-p"></p>
+            <span class="close">&times;</span>
+        </div>
         <label id="name-label">Name : </label>
    <input type="text" id="name" placeholder="Enter your name" name="name" required/>
         <label id="email-label">Email : </label>
@@ -16,7 +20,7 @@
         <input type="password" id="pass"  placeholder="Enter your password" name="password" required/>
             <label id="cpass-label">Confirm Password : </label>
         <input type="password" id="cpass"  placeholder="Confirm your password" name="cpassword" required/>
-        <div class="btn-div"><button type="submit" id="submit"> Register</button></div>
+        <div class="btn-div"><button type="submit" id="submit" onclick="return val()"> Register</button></div>
         <hr>
       <p class="text-center">Already Registered ? Please goto <a href="/login">Log in</a> page.</p>
     </div>
@@ -24,4 +28,25 @@
   </form>
     </div>
 </main>
+<script>
+    function val(){
+
+    var pass1 = document.getElementById('pass').value;
+    var pass2 = document.getElementById('cpass').value;
+
+    var modal=document.getElementById('error');
+    if(pass!=pass2){
+        modal.style.display = "flex";
+        document.getElementById("error-p").innerHTML = "Passwords Doesn't Match";
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+        var modal=document.getElementById('error');
+          $(".close").click(function(){
+            modal.style.display = "none"
+          });
+</script>
 {% endblock %}

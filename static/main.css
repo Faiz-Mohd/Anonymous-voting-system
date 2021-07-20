@@ -48,6 +48,7 @@ p{
 #survey-form{
   background-color:rgba(62, 63, 69,0.6);
   padding : 20px;
+  padding-top:10px;
   border: 2px;
   border-radius: 5px;
 }
@@ -95,9 +96,22 @@ hr{
 background-color:white;
 }
 
-
-
 p>a{
 color:#fc3565;
 }
+
+#error{
+    display:none;
+    padding-left:20px;
+    padding-right:10px;
+    justify-content:space-between;
+    font-size:20px;
+    background-color:#fc5876;
+    margin-top:0px;
+    margin-bottom:10px;
+}
+#error-p{
+margin-bottom:0px !important;
+}
+
 
