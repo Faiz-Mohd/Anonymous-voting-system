@@ -8,6 +8,12 @@
   <div class="form-div">
   <form id="survey-form" action="/login" method="post">
     <div class="form-elements">
+        {% if msg %}
+        <div id="acc-error">
+            <p id="acc-error-p">{{msg}}</p>
+            <span class="close">&times;</span>
+        </div>
+       {% endif %}
         <label id="email-label">Email : </label>
    <input type="email" id="email" placeholder="Enter your email" name="email" required/>
     <label id="pass-label">Password : </label>
@@ -19,4 +25,10 @@
   </form>
     </div>
 </main>
+ <script>
+         var modal2=document.getElementById('acc-error');
+          $(".close").click(function(){
+            modal2.style.display = "none"
+          });
+</script>
 {% endblock %}

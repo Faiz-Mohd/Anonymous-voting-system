@@ -17,6 +17,7 @@ def create_app():
 
     @app.route("/login", methods =['GET', 'POST'])
     def login():
+        msg=""
         if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
             email = request.form['email']
             password = request.form['password']
@@ -30,13 +31,13 @@ def create_app():
                     session['name']=account[1]
                     return redirect(url_for("dashboard"))
                 else:
-                    return "Wrong password!"
+                    return render_template('auth/login.html',msg="Wrong password")
             else:
-                return "Account doesn't Exist"
+                return render_template('auth/login.html',msg="Account doesn't Exist")
         else:
             if 'loggedin' in session:
                 return redirect(url_for("dashboard"))
-            return render_template('auth/login.html')
+            return render_template('auth/login.html',msg=msg)
 
     @app.route("/register", methods =['GET', 'POST'])
     def register():
