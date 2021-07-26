@@ -1,62 +1,93 @@
-{% extends "base.html" %}
-{% block body %}
+{% extends "base.html" %} {% block body %}
 <main id="main">
-   <div class="header">
-       <h2 id="title">Register Form</h2>
-       <p id="description">Please Register by filling the form:</p>
-   </div>
+  <div class="header">
+    <h2 id="title">Register Form</h2>
+    <p id="description">Please Register by filling the form:</p>
+  </div>
   <div class="form-div">
-  <form id="survey-form" action="/register" method="post">
-    <div class="form-elements">
-      {% if msg=="Account already Exists" %}
+    <form id="survey-form" action="/register" method="post">
+      <div class="form-elements">
+        {% if msg %}
         <div id="acc-error">
-            <p id="acc-error-p">{{msg}}</p>
-            <span class="close">&times;</span>
+          <p id="acc-error-p">{{msg}}</p>
+          <span class="close">&times;</span>
         </div>
-       {% endif %}
+        {% endif %}
         <div id="error">
-            <p id="error-p"></p>
-            <span class="close">&times;</span>
+          <p id="error-p"></p>
+          <span class="close">&times;</span>
         </div>
         <label id="name-label">Name : </label>
-   <input type="text" id="name" placeholder="Enter your name" name="name" required/>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your name"
+          name="name"
+          required
+        />
         <label id="email-label">Email : </label>
-    <input type="email" id="email" placeholder="Enter your email" name="email" required/>
-    <label id="pass-label">Password : </label>
-        <input type="password" id="pass"  placeholder="Enter your password" name="password" required/>
-            <label id="cpass-label">Confirm Password : </label>
-        <input type="password" id="cpass"  placeholder="Confirm your password" name="cpassword" required/>
-        <div class="btn-div"><button type="submit" id="submit" onclick="return val()"> Register</button></div>
-        <hr>
-      <p class="text-center">Already Registered ? Please goto <a href="/login">Log in</a> page.</p>
-    </div>
-
-  </form>
-    </div>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          name="email"
+          required
+        />
+        <label id="pass-label">Password : </label>
+        <input
+          type="password"
+          id="pass"
+          placeholder="Enter your password"
+          name="password"
+          required
+        />
+        <label id="cpass-label">Confirm Password : </label>
+        <input
+          type="password"
+          id="cpass"
+          placeholder="Confirm your password"
+          name="cpassword"
+          required
+        />
+        <div class="btn-div">
+          <button
+            type="submit"
+            class="submit"
+            id="submit"
+            onclick="return val()"
+          >
+            Register
+          </button>
+        </div>
+        <hr />
+        <p class="text-center">
+          Already Registered ? Please goto <a href="/login">Log in</a> page.
+        </p>
+      </div>
+    </form>
+  </div>
 </main>
 <script>
-    function val(){
+  function val() {
+    var pass1 = document.getElementById("pass").value;
+    var pass2 = document.getElementById("cpass").value;
 
-    var pass1 = document.getElementById('pass').value;
-    var pass2 = document.getElementById('cpass').value;
-
-    var modal=document.getElementById('error');
+    var modal = document.getElementById("error");
     modal.style.display = "none";
 
-    if(pass1!=pass2){
-        modal.style.display = "flex";
-        document.getElementById("error-p").innerHTML = "Passwords Doesn't Match";
-        return false;
+    if (pass1 != pass2) {
+      modal.style.display = "flex";
+      document.getElementById("error-p").innerHTML = "Passwords Doesn't Match";
+      return false;
+    } else {
+      return true;
     }
-    else{
-        return true;
-    }
-}
-          var modal1=document.getElementById('error');
-          var modal2=document.getElementById('acc-error');
-          $(".close").click(function(){
-            modal1.style.display = "none"
-            modal2.style.display = "none"
-          });
+  }
+  var modal1 = document.getElementById("error");
+  var modal2 = document.getElementById("acc-error");
+  $(".close").click(function () {
+    modal1.style.display = "none";
+    modal2.style.display = "none";
+  });
 </script>
 {% endblock %}

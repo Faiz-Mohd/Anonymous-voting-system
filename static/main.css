@@ -52,6 +52,13 @@ p{
   border: 2px;
   border-radius: 5px;
 }
+.survey-form{
+  background-color:rgba(62, 63, 69,0.6);
+  padding : 20px;
+  padding-top:10px;
+  border: 2px;
+  border-radius: 5px;
+}
 .form-elements{
   padding:30px;
 }
@@ -60,7 +67,7 @@ label{
   font-family:poppins;
   display:block;
 }
-input{
+input,textarea{
   background-color:#282931;
   color:white;
   width:100%;
@@ -79,7 +86,7 @@ input{
   justify-content: center;
   align-items: center;
 }
-#submit{
+.submit{
   width:60%;
   padding:8px;
   margin-top:10px;
@@ -90,7 +97,6 @@ input{
   cursor:pointer;
   font-family:poppins;
   font-size:20px;
-  font-weight:bold;
 }
 hr{
 background-color:white;
@@ -128,4 +134,32 @@ color:#fc3565;
     margin-bottom:0px !important;
 }
 
+.fmodal {
+  padding-top: 40px;
+  display: none;
+  background: rgba(40, 41, 49);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow-y: auto;
+  text-align:left;
+}
 
+.xclose {
+  color:white;
+  font-size: 36px;
+  font-weight: bold;
+  position: relative;
+  float:right;
+  width: 30px;
+}
+
+.xclose:hover,
+.xclose:focus {
+  color: #fc3565;
+  text-decoration: none;
+  cursor: pointer;
+}

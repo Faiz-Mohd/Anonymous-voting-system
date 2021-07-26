@@ -1,34 +1,50 @@
-{% extends "base.html" %}
-{% block body %}
+{% extends "base.html" %} {% block body %}
 <main id="main">
-   <div class="header">
-       <h2 id="title">Log In Form</h2>
-       <p id="description">Please Log in with registered email id:</p>
-   </div>
+  <div class="header">
+    <h2 id="title">Log In Form</h2>
+    <p id="description">Please Log in with registered email id:</p>
+  </div>
   <div class="form-div">
-  <form id="survey-form" action="/login" method="post">
-    <div class="form-elements">
+    <form id="survey-form" action="/login" method="post">
+      <div class="form-elements">
         {% if msg %}
         <div id="acc-error">
-            <p id="acc-error-p">{{msg}}</p>
-            <span class="close">&times;</span>
+          <p id="acc-error-p">{{msg}}</p>
+          <span class="close">&times;</span>
         </div>
-       {% endif %}
+        {% endif %}
         <label id="email-label">Email : </label>
-   <input type="email" id="email" placeholder="Enter your email" name="email" required/>
-    <label id="pass-label">Password : </label>
-        <input type="password" id="pass"  placeholder="Enter your password" name="password" required/>
-      <div class="btn-div"><button type="submit" id="submit"> Log In</button></div>
-                <hr>
-      <p class="text-center">Not yet Registered ? Please goto <a href="/register">Register</a> page.</p>
-    </div>
-  </form>
-    </div>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          name="email"
+          required
+        />
+        <label id="pass-label">Password : </label>
+        <input
+          type="password"
+          id="pass"
+          placeholder="Enter your password"
+          name="password"
+          required
+        />
+        <div class="btn-div">
+          <button type="submit" class="submit" id="submit">Log In</button>
+        </div>
+        <hr />
+        <p class="text-center">
+          Not yet Registered ? Please goto
+          <a href="/register">Register</a> page.
+        </p>
+      </div>
+    </form>
+  </div>
 </main>
- <script>
-         var modal2=document.getElementById('acc-error');
-          $(".close").click(function(){
-            modal2.style.display = "none"
-          });
+<script>
+  var modal2 = document.getElementById("acc-error");
+  $(".close").click(function () {
+    modal2.style.display = "none";
+  });
 </script>
 {% endblock %}

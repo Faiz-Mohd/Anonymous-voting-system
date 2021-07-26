@@ -1,15 +1,120 @@
-{% extends "base.html" %}
-{% block body %}
-    <div class="container text-center mt-5">
-        <h1>Hi {{name}}</h1>
-        <br>
-        <div class="row-flex">
-        <div class="col-8">
-        <p>This is your Dashoard!!!</p>
+{% extends "base.html" %} {% block body %}
+<div class="container text-center mt-5">
+  <h1>Hi {{name}}</h1>
+  <p>This is your Dashoard!!!</p>
+  <br />
+  <div class="row-flex">
+    <div class="col-9">
+      <div class="row-flex">
+        <div class="form-div">
+          <div class="survey-form">
+            <div class="form-elements">
+              <p class="text-center">Want to create a new Poll?</p>
+              <hr />
+              <div>
+                <a
+                  id="modal-btn"
+                  class="newclass"
+                  data-id="form-modal"
+                  ><button type="submit" class="submit">Create Poll</button></a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="form-div">
+          <div class="survey-form">
+            <div class="form-elements">
+              <p class="text-center">Browse through your Polls..</p>
+
+              <hr />
+              <div class="btn-div">
+                <button type="submit" class="submit">View Polls</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="row-flex">
-            <a href="/logout"><button class="btn mr-5">Log Out</button></a>
-        </div>
+      </div>
     </div>
+  </div>
+  <br />
+  <br />
+  <div class="row-flex">
+    <a href="/logout"><button class="btn mr-5">Log Out</button></a>
+  </div>
+  <br />
+  <div id="form-modal" class="fmodal">
+
+
+<div class="form-div">
+
+    <form id="survey-form" action="/register" method="post">
+        <span class="xclose">&times;</span>
+      <div class="form-elements">
+        <label id="name-label">Poll Question : </label>
+        <textarea
+          id="question"
+          placeholder="Type in your question"
+          name="question"
+          required
+        ></textarea>
+        <label id="option1-label">Option 1 : </label>
+        <input
+          type="text"
+          id="option1"
+          name="option1"
+          required
+        />
+          <label id="option2-label">Option 2 : </label>
+        <input
+          type="text"
+          id="option2"
+          name="option2"
+          required
+        />
+        <div class="btn-div">
+          <button
+            type="submit"
+            class="btn"
+            id="add-option"
+            onclick=""
+          >
+            Add Option
+          </button>
+        </div>
+        <hr />
+                <div class="btn-div">
+          <button
+            type="submit"
+            class="submit"
+            id="submit"
+            onclick=""
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+      </div>
+</div>
+
+<script>
+
+          $(".newclass").click(function() {
+           var a_Class = this.className;
+           var a_ID = $(this).attr('data-id');
+           var modal = document.getElementById(a_ID);
+
+          var span = document.getElementsByClassName("xclose")[0];
+
+          modal.style.display = "block";
+
+          $(".xclose").click(function(){
+            modal.style.display = "none"
+          });
+
+
+      });
+      </script>
 {% endblock %}
