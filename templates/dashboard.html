@@ -25,7 +25,7 @@
         <div class="form-div">
           <div class="survey-form">
             <div class="form-elements">
-              <p class="text-center">Browse through your Polls..</p>
+              <p class="text-center">Browse through your Polls.</p>
 
               <hr />
               <div class="btn-div">
@@ -51,6 +51,7 @@
     <form id="survey-form" action="/register" method="post">
         <span class="xclose">&times;</span>
       <div class="form-elements">
+        <div class="input-wrapper">
         <label id="name-label">Poll Question : </label>
         <textarea
           id="question"
@@ -58,26 +59,31 @@
           name="question"
           required
         ></textarea>
-        <label id="option1-label">Option 1 : </label>
-        <input
-          type="text"
-          id="option1"
-          name="option1"
-          required
-        />
-          <label id="option2-label">Option 2 : </label>
-        <input
-          type="text"
-          id="option2"
-          name="option2"
-          required
-        />
+        <div>
+          <label id="option1-label">Option 1 : </label>
+          <input
+            type="text"
+            id="option1"
+            name="option1"
+            class="options"
+            required
+          />
+        </div>
+          <div>
+            <label id="option2-label">Option 2 : </label>
+                    <input
+            type="text"
+            id="option2"
+            name="option2"
+            class="options"
+            required
+                    />
+          </div>
+        </div>
         <div class="btn-div">
           <button
-            type="submit"
-            class="btn"
+            class="add_button btn"
             id="add-option"
-            onclick=""
           >
             Add Option
           </button>
@@ -117,4 +123,33 @@
 
       });
       </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxField = 9;
+    var addButton = $('.add_button');
+    var wrapper = $('.input-wrapper');
+    var fieldHTML = '<div><label>Option <span class="myText"></span> : </label><input type="text" class="options" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button">X</a></div>'; //New input field html
+    var number = 0;
+    var x = 1;
+
+    //Once add button is clicked
+    $(addButton).click(function(e){
+        e.preventDefault();
+        if(x < maxField){
+            x++;
+            $(wrapper).append(fieldHTML);
+            document.getElementsByClassName("myText")[number].innerHTML = number+3;
+            number++;
+        }
+    });
+
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+        number--;
+    });
+
+});
+</script>
 {% endblock %}
