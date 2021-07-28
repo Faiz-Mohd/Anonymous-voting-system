@@ -4,3 +4,9 @@ create table if not exists users (
        email text unique,
        password text
        );
+
+create table if not exists polls(
+    u_id serial references users(id),
+    question text,
+    options text[]
+ );

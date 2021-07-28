@@ -2,6 +2,11 @@
 <div class="container text-center mt-5">
   <h1>Hi {{name}}</h1>
   <p>This is your Dashoard!!!</p>
+          {% if msg %}
+        <div id="acc-success">
+          <p id="acc-succes-p">{{msg}}</p>
+        </div>
+        {% endif %}
   <br />
   <div class="row-flex">
     <div class="col-9">
@@ -48,7 +53,7 @@
 
 <div class="form-div">
 
-    <form id="survey-form" action="/register" method="post">
+    <form id="survey-form" action="/dashboard" method="post">
         <span class="xclose">&times;</span>
       <div class="form-elements">
         <div class="input-wrapper">
@@ -64,7 +69,7 @@
           <input
             type="text"
             id="option1"
-            name="option1"
+            name="options[]"
             class="options"
             required
           />
@@ -74,7 +79,7 @@
                     <input
             type="text"
             id="option2"
-            name="option2"
+            name="options[]"
             class="options"
             required
                     />
@@ -128,7 +133,7 @@ $(document).ready(function(){
     var maxField = 9;
     var addButton = $('.add_button');
     var wrapper = $('.input-wrapper');
-    var fieldHTML = '<div><label>Option <span class="myText"></span> : </label><input type="text" class="options" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button">X</a></div>'; //New input field html
+    var fieldHTML = '<div><label>Option <span class="myText"></span> : </label><input type="text" class="options" name="options[]" value=""/><a href="javascript:void(0);" class="remove_button">X</a></div>'; //New input field html
     var number = 0;
     var x = 1;
 

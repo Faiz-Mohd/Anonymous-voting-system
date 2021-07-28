@@ -29,7 +29,8 @@ def create_app():
                 if account[3]==password:
                     session['loggedin']=True
                     session['name']=account[1]
-                    return redirect(url_for("dashboard"))
+                    session['u_id'] = account[0]
+                    return redirect(url_for("dashboard",msg=''))
                 else:
                     return render_template('auth/login.html',msg="Wrong password")
             else:
@@ -54,24 +55,41 @@ def create_app():
             else:
                 curs.execute("insert into users(name,email,password) values (%s, %s, %s)", (name, email, password, ))
                 conn.commit()
+                curs.execute("select * from users where email = %s", (email,))
+                account = curs.fetchone()
+                session['u_id']=account[0]
                 session['loggedin'] = True
                 session['name'] = name
-                return redirect(url_for("dashboard"))
+                return redirect(url_for("dashboard",msg="Account created successfully"))
         else:
             return render_template('auth/register.html')
 
-    @app.route("/dashboard")
+    @app.route("/dashboard", methods =['GET', 'POST'])
     def dashboard():
-        if 'loggedin' in session:
+        if request.method == 'POST' and 'u_id' in session:
+            question=request.form['question']
+            options = request.form.getlist('options[]')
+            conn = db.get_db()
+            curs = conn.cursor()
+            u_id=session['u_id']
             name = session['name']
-            return render_template('dashboard.html',name=name)
+            curs.execute("insert into polls (u_id,question,options) values (%s,%s,%s)",(u_id,question,options))
+            conn.commit()
+            return render_template('dashboard.html', msg="Poll Created Successfully",name=name)
+        elif 'loggedin' in session:
+            msg = request.args['msg']
+            name = session['name']
+            return render_template('dashboard.html',name=name,msg=msg)
         else:
             return redirect(url_for("login"))
+
+
 
     @app.route("/logout")
     def logout():
         session.pop('loggedin', None)
         session.pop('name', None)
+        session.pop('u_id', None)
         return redirect(url_for('login'))
 
     return app
