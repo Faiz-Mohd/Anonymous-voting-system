@@ -178,3 +178,16 @@ color:#fc3565;
   text-decoration: none;
   cursor: pointer;
 }
+#acc-success{
+    position:absolute;
+    top:20px;
+    right:20px;
+    padding:5px 15px 5px 15px;
+    background-color:rgba(152,251,152,0.8);
+    border-radius:5px;
+}
+#acc-success-p{
+    margin-bottom:0px !important;
+    color:black;
+    font-size:18px;
+}

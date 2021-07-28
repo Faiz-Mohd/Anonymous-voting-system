@@ -30,7 +30,7 @@ def create_app():
                     session['loggedin']=True
                     session['name']=account[1]
                     session['u_id'] = account[0]
-                    return redirect(url_for("dashboard",msg=''))
+                    return redirect(url_for("dashboard"))
                 else:
                     return render_template('auth/login.html',msg="Wrong password")
             else:
@@ -60,7 +60,8 @@ def create_app():
                 session['u_id']=account[0]
                 session['loggedin'] = True
                 session['name'] = name
-                return redirect(url_for("dashboard",msg="Account created successfully"))
+                msg="Account created successfully"
+                return render_template('dashboard.html',name=name,msg=msg)
         else:
             return render_template('auth/register.html')
 
@@ -77,7 +78,10 @@ def create_app():
             conn.commit()
             return render_template('dashboard.html', msg="Poll Created Successfully",name=name)
         elif 'loggedin' in session:
-            msg = request.args['msg']
+            if 'msg' in request.args:
+                msg = request.args['msg']
+            else:
+                msg=''
             name = session['name']
             return render_template('dashboard.html',name=name,msg=msg)
         else:

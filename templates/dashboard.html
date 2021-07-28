@@ -1,12 +1,13 @@
 {% extends "base.html" %} {% block body %}
+{% if msg %}
+        <span id="acc-success">
+          <p id="acc-success-p">{{msg}}</p>
+        </span>
+{% endif %}
 <div class="container text-center mt-5">
   <h1>Hi {{name}}</h1>
   <p>This is your Dashoard!!!</p>
-          {% if msg %}
-        <div id="acc-success">
-          <p id="acc-succes-p">{{msg}}</p>
-        </div>
-        {% endif %}
+
   <br />
   <div class="row-flex">
     <div class="col-9">
@@ -111,7 +112,8 @@
 </div>
 
 <script>
-
+          $('#acc-success').hide().delay(400).fadeIn(400);
+          $('#acc-success').delay(3000).fadeOut(400);
           $(".newclass").click(function() {
            var a_Class = this.className;
            var a_ID = $(this).attr('data-id');
