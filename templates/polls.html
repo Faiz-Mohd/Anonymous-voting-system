@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container text-center mt-5">
+  <h1>Hi {{name}}</h1>
+  <p>List of all Polls you have created:</p>
+  <br />
+{% for poll_id,u_id,question,end_date,end_time in polls %}
+        <div class="polls">
+         <div class="p-quest">
+          <p>{{question}}</p>
+          <div class="p-icons">
+              <span class="green"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/expand--v1.png"/></span>
+              <span class="red"><img src="https://img.icons8.com/material-sharp/24/ffffff/delete-forever.png"/></span>
+          </div>
+        </div>
+            <hr>
+
+
+            <div class="deadline">
+                <div><img class="calendar" src="{{url_for('static', filename='calendar.png')}}" /></div>
+                <div class="ml-2 date"><span>{{end_date.strftime('%d-%m-%Y')}}</span><br><span>{{end_time}}</span></div>
+            </div>
+
+        </div>
+<br>
+{% endfor %}
+</div>
+{% endblock %}

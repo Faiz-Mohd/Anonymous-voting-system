@@ -94,6 +94,15 @@ def create_app():
         else:
             return redirect(url_for("login"))
 
+    @app.route("/dashboard/polls")
+    def poll_list():
+        conn = db.get_db()
+        curs = conn.cursor()
+        u_id = session['u_id']
+        name=session['name']
+        curs.execute("select * from polls where u_id= %s order by poll_id desc", (u_id,))
+        polls = curs.fetchall()
+        return render_template('polls.html',polls=polls,name=name)
 
 
     @app.route("/logout")

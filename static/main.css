@@ -9,6 +9,10 @@ h1{
   font-size: 4rem;
   font-weight: bold;
 }
+h2{
+  color: #fc3565;
+  font-weight: bold;
+}
 p{
     color:white;
     font-size:20px;
@@ -201,4 +205,54 @@ color:#fc3565;
 .date{
     width:40%;
 }
+.head{
+    margin-top:10px;
+}
+.polls{
+  margin:0 auto;
+  width:40%;
+  background-color:rgba(62, 63, 69,0.6);
+  padding : 20px;
+  border: 2px;
+  border-radius: 5px;
+  text-align:left;
+}
+.p-quest{
+  display:flex;
+  justify-content:space-between;
+}
 
+.polls p{
+    font-size:18px;
+    margin-bottom:0;
+}
+.polls .p-icons span{
+    color:red;
+    margin-left:8px;
+    cursor:pointer;
+}
+.red:hover{
+    filter: brightness(50%) sepia(100) saturate(100) hue-rotate(25deg);
+}
+ .green:hover{
+    filter: brightness(50%) sepia(100) saturate(10) hue-rotate(90deg);
+}
+
+
+.polls hr{
+    background-color:rgba(255,255,255,0.2);
+    margin:8px;
+}
+.polls .date{
+    color:rgba(255,255,255,0.6);
+    font-size:10px;
+}
+
+.calendar{
+    height:30px;
+    filter: invert(1);
+}
+.deadline{
+    display:flex;
+    justify-content:left;
+}
