@@ -134,20 +134,6 @@ color:#fc3565;
 #error-p{
     margin-bottom:0px !important;
 }
-#acc-error{
-    display:flex;
-    padding:2px;
-    padding-left:20%;
-    padding-right:10px;
-    justify-content:space-between;
-    font-size:15px;
-    background-color:#fc5876;
-    margin-top:0px;
-    margin-bottom:10px;
-}
-#acc-error-p{
-    margin-bottom:0px !important;
-}
 
 .fmodal {
   padding-top: 40px;
@@ -191,3 +177,28 @@ color:#fc3565;
     color:black;
     font-size:18px;
 }
+#acc-error{
+    position:absolute;
+    top:20px;
+    right:20px;
+    padding:5px 15px 5px 15px;
+    background-color:rgba(255,127,127,0.8);
+    border-radius:5px;
+}
+#acc-error-p{
+    margin-bottom:0px !important;
+    color:black;
+    font-size:18px;
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+.deadline{
+    display:flex;
+    justify-content:space-between;
+    width:90%;
+}
+.date{
+    width:40%;
+}
+

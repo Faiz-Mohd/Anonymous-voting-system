@@ -1,5 +1,10 @@
 {% extends "base.html" %} {% block body %}
 <main id="main">
+  {% if msg %}
+        <span id="acc-error">
+          <p id="acc-error-p">{{msg}}</p>
+        </span>
+{% endif %}
   <div class="header">
     <h2 id="title">Log In Form</h2>
     <p id="description">Please Log in with registered email id:</p>
@@ -7,12 +12,6 @@
   <div class="form-div">
     <form id="survey-form" action="/login" method="post">
       <div class="form-elements">
-        {% if msg %}
-        <div id="acc-error">
-          <p id="acc-error-p">{{msg}}</p>
-          <span class="close">&times;</span>
-        </div>
-        {% endif %}
         <label id="email-label">Email : </label>
         <input
           type="email"
@@ -42,9 +41,7 @@
   </div>
 </main>
 <script>
-  var modal2 = document.getElementById("acc-error");
-  $(".close").click(function () {
-    modal2.style.display = "none";
-  });
+   $('#acc-error').hide().delay(400).fadeIn(400);
+   $('#acc-error').delay(3000).fadeOut(400);
 </script>
 {% endblock %}

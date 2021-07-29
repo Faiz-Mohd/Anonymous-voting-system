@@ -70,11 +70,18 @@ def create_app():
         if request.method == 'POST' and 'u_id' in session:
             question=request.form['question']
             options = request.form.getlist('options[]')
+            date=request.form['date']
+            time=request.form['time']
             conn = db.get_db()
             curs = conn.cursor()
             u_id=session['u_id']
             name = session['name']
-            curs.execute("insert into polls (u_id,question,options) values (%s,%s,%s)",(u_id,question,options))
+            curs.execute("insert into polls (u_id,question,end_date,end_time) values (%s,%s,%s,%s)",(u_id,question,date,time))
+            conn.commit()
+            curs.execute("select poll_id from polls where u_id= %s order by poll_id desc limit 1",(u_id, ))
+            poll=curs.fetchone()[0]
+            for op in options:
+                curs.execute("insert into options (p_id,options,votes) values (%s,%s,%s)",(poll, op,0))
             conn.commit()
             return render_template('dashboard.html', msg="Poll Created Successfully",name=name)
         elif 'loggedin' in session:

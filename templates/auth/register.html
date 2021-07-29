@@ -10,7 +10,6 @@
         {% if msg %}
         <div id="acc-error">
           <p id="acc-error-p">{{msg}}</p>
-          <span class="close">&times;</span>
         </div>
         {% endif %}
         <div id="error">
@@ -68,26 +67,22 @@
   </div>
 </main>
 <script>
+   $('#acc-error').hide().delay(400).fadeIn(400);
+   $('#acc-error').delay(3000).fadeOut(400);
   function val() {
     var pass1 = document.getElementById("pass").value;
     var pass2 = document.getElementById("cpass").value;
 
-    var modal = document.getElementById("error");
-    modal.style.display = "none";
 
     if (pass1 != pass2) {
-      modal.style.display = "flex";
-      document.getElementById("error-p").innerHTML = "Passwords Doesn't Match";
+      document.getElementById("acc-error-p").innerHTML = "Passwords Doesn't Match";
+      $('#acc-error').hide().delay(400).fadeIn(400);
+      $('#acc-error').delay(3000).fadeOut(400);
       return false;
     } else {
       return true;
     }
   }
-  var modal1 = document.getElementById("error");
-  var modal2 = document.getElementById("acc-error");
-  $(".close").click(function () {
-    modal1.style.display = "none";
-    modal2.style.display = "none";
-  });
+
 </script>
 {% endblock %}
