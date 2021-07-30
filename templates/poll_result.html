@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block body %}
+<script>
+    var opt={{a|tojson}};
+    var vot={{b|tojson}};
+    quest={{question|tojson}}
+    var datas=[];
+    for(let i=0;i < opt.length;i++){
+        let dict={};
+        dict.y=vot[i];
+        dict.label=opt[i];
+        datas.push(dict);
+
+    }
+window.onload = function () {
+
+var options = {
+    backgroundColor: "#282931",
+	title: {
+		text: quest,
+		fontColor: "white",
+		fontWeight: "normal",
+		fontFamily:"tahoma"
+	},
+	 legend : {
+    fontColor: "white"
+    },
+	animationEnabled: true,
+	data: [{
+	    indexLabelFontColor: "white",
+		type: "pie",
+		startAngle: 40,
+		lineColor:"white",
+		toolTipContent: "<b>{label}</b>: {y}",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		indexLabel: "{label} - {y}",
+		dataPoints: datas
+	}]
+};
+$("#chartContainer").CanvasJSChart(options);
+
+}
+</script>
+<div class="container text-center mt-5">
+  <h1>Hi {{name}}</h1>
+  <p>Here is the result of your Poll:</p>
+  <br />
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+</div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+{% endblock %}

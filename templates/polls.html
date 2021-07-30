@@ -9,20 +9,55 @@
          <div class="p-quest">
           <p>{{question}}</p>
           <div class="p-icons">
-              <span class="green"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/expand--v1.png"/></span>
+              <a href="/dashboard/polls/{{poll_id}}"><span class="green"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/expand--v1.png"/></span></a>
               <span class="red"><img src="https://img.icons8.com/material-sharp/24/ffffff/delete-forever.png"/></span>
           </div>
         </div>
             <hr>
-
-
+            <div class="s-row">
             <div class="deadline">
                 <div><img class="calendar" src="{{url_for('static', filename='calendar.png')}}" /></div>
                 <div class="ml-2 date"><span>{{end_date.strftime('%d-%m-%Y')}}</span><br><span>{{end_time}}</span></div>
             </div>
-
+            <div class="input-group">
+<input type="text" class="poll-links" value="http://127.0.0.1:5000/polls/{{poll_id}}"/>
+  <div class="input-group-append btnl-div">
+    <button class="btn btn-l" type="button">Copy</button>
+  </div>
+</div>
+            </div>
         </div>
 <br>
 {% endfor %}
 </div>
+<div id="form-modal" class="fmodal">
+
+<div class="form-div">
+
+    <form id="survey-form" action="/dashboard" method="post">
+        <span class="xclose">&times;</span>
+      <div class="form-elements">
+
+      </div>
+    </form>
+  </div>
+      </div>
+</div>
+<script>
+          $(".green").click(function() {
+           var a_Class = this.className;
+           var a_ID = $(this).attr('data-id');
+           var modal = document.getElementById(a_ID);
+
+          var span = document.getElementsByClassName("xclose")[0];
+
+          modal.style.display = "block";
+
+          $(".xclose").click(function(){
+            modal.style.display = "none"
+          });
+
+
+      });
+      </script>
 {% endblock %}

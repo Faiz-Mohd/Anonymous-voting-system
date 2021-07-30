@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 body {
   background: #282931;
   font-family: 'Varela Round', sans-serif;
@@ -197,13 +198,16 @@ color:#fc3565;
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
-.deadline{
+::-moz-calendar-picker-indicator {
+    filter: invert(1);
+}
+.in-deadline{
     display:flex;
     justify-content:space-between;
     width:90%;
 }
 .date{
-    width:40%;
+    width:45%;
 }
 .head{
     margin-top:10px;
@@ -216,6 +220,12 @@ color:#fc3565;
   border: 2px;
   border-radius: 5px;
   text-align:left;
+  box-shadow: 0 1px 3px rgba(190, 190, 190, 0.15);
+  transition: 0.4s;
+}
+.polls:hover {
+  transform: translate(0, -3px);
+  box-shadow: 0 2px 8px rgba(190, 190, 190, 0.5);
 }
 .p-quest{
   display:flex;
@@ -237,7 +247,10 @@ color:#fc3565;
  .green:hover{
     filter: brightness(50%) sepia(100) saturate(10) hue-rotate(90deg);
 }
-
+.s-row{
+    display:flex;
+    justify-content:space-between;
+}
 
 .polls hr{
     background-color:rgba(255,255,255,0.2);
@@ -253,6 +266,30 @@ color:#fc3565;
     filter: invert(1);
 }
 .deadline{
+    margin-left:10px;
     display:flex;
     justify-content:left;
+    width:50%;
+}
+
+.btn-l{
+    background-color:rgba(62, 63, 69,0.2);
+    border:1px solid white;
+    border-radius:5px;
+    color:white;
+    font-size:14px;
+    padding:2px 8px;
+}
+.btn-l:hover{
+    background-color:rgba(62, 63, 69,0.2);
+    color:#4c7cf5;
+    border:1px solid #4c7cf5;
+    cursor:pointer;
+}
+.poll-links{
+    width:80%;
+    margin:0px;
+    padding:2px;
+    padding-left:8px;
+    font-weight:200 !important;
 }

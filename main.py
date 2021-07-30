@@ -96,13 +96,41 @@ def create_app():
 
     @app.route("/dashboard/polls")
     def poll_list():
-        conn = db.get_db()
-        curs = conn.cursor()
-        u_id = session['u_id']
-        name=session['name']
-        curs.execute("select * from polls where u_id= %s order by poll_id desc", (u_id,))
-        polls = curs.fetchall()
-        return render_template('polls.html',polls=polls,name=name)
+        if 'loggedin' in session:
+            conn = db.get_db()
+            curs = conn.cursor()
+            u_id = session['u_id']
+            name=session['name']
+            curs.execute("select * from polls where u_id= %s order by poll_id desc", (u_id,))
+            polls = curs.fetchall()
+            return render_template('polls.html',polls=polls,name=name)
+        else:
+            return redirect(url_for("login"))
+
+    @app.route("/dashboard/polls/<pid>")
+    def poll_result(pid):
+        if 'loggedin' in session:
+            u_id=session['u_id']
+            name = session['name']
+            conn = db.get_db()
+            curs = conn.cursor()
+            curs.execute("select question from polls where u_id= %s and poll_id=%s", (u_id,pid))
+            res=curs.fetchone()
+            if res:
+                question=res[0]
+                curs.execute("select options,votes from options where p_id= %s", (pid,))
+                result=curs.fetchall()
+                a=[]
+                b=[]
+                for x in result:
+                    a.append(x[0])
+                    b.append(x[1])
+                return render_template('poll_result.html', pid=pid, question=question,a=a,b=b,name=name)
+            else:
+                return redirect(url_for("poll_list"))
+        else:
+            return redirect(url_for("login"))
+
 
 
     @app.route("/logout")
