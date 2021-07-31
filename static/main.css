@@ -195,6 +195,19 @@ color:#fc3565;
     color:black;
     font-size:18px;
 }
+#acc-info{
+    position:absolute;
+    top:20px;
+    right:20px;
+    padding:5px 15px 5px 15px;
+    background-color:rgba(50, 140, 230,0.7);
+    border-radius:5px;
+}
+#acc-info-p{
+    margin-bottom:0px !important;
+    color:black;
+    font-size:18px;
+}
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
