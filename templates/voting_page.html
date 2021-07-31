@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block body %}
+<main id="main" class="mt-4">
+
+  <div class="header">
+    <h2 id="title">Anonymous Voting System</h2>
+    <p id="description">Please Cast your vote here:</p>
+  </div>
+  <div class="form-div">
+    <form id="survey-form" action="/polls/{{pid}}/vote" method="post">
+      <div class="form-elements">
+        {% if msg %}
+        <p class="text-center">{{msg}}</p>
+        {% else %}
+        <p class="qstn">{{question}}</p>
+
+        <div class="wrapper">
+          <div class="option-container">
+            {% for option in options %}
+            <div class="option-div">
+              <input type="radio" name="radio" id="radio{{loop.index}}" value="{{option}}" class="radio" />
+              <label for="radio{{loop.index}}">{{option}}</label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <br />
+        <div class="btn-div mt-3">
+          <button type="submit" class="submit" id="submit">Vote</button>
+        </div>
+        {% endif %}
+        <hr />
+        <p class="text-center">
+          Want to create a Poll like this?
+          <a href="/register">Register</a> here.
+        </p>
+      </div>
+    </form>
+  </div>
+</main>
+<script>
+  $("#acc-error").hide().delay(400).fadeIn(400);
+  $("#acc-error").delay(3000).fadeOut(400);
+</script>
+{% endblock %}

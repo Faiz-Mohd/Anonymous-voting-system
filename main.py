@@ -1,5 +1,5 @@
 from flask import Flask, render_template,request, session,redirect,url_for
-
+from datetime import datetime
 
 def create_app():
     app = Flask("new")
@@ -131,6 +131,38 @@ def create_app():
         else:
             return redirect(url_for("login"))
 
+    @app.route("/polls/<pid>")
+    def polling(pid):
+        conn = db.get_db()
+        curs = conn.cursor()
+        curs.execute("select * from polls where poll_id=%s", (pid,))
+        res = curs.fetchone()
+        date=res[3]
+        time=res[4]
+        com=datetime.combine(date,time)
+        curr=datetime.now()
+        diff=(com-curr).total_seconds()
+        if diff<1:
+            return render_template('voting_page.html', msg="The Poll you are looking for is no longer accepting responses")
+        question=res[2]
+        curs.execute("select options from options where p_id=%s", (pid,))
+        op = curs.fetchall()
+        options=[]
+        for x in op:
+            options.append(x[0])
+        return render_template('voting_page.html',question=question,options=options,pid=pid)
+
+    @app.route("/polls/<pid>/vote", methods=['GET','POST'])
+    def vote(pid):
+        if request.method == 'POST' and 'radio' in request.form:
+            value=request.form['radio']
+            conn = db.get_db()
+            curs = conn.cursor()
+            curs.execute("update options set votes=votes+1 where p_id= %s and options= %s", (pid,value, ))
+            conn.commit()
+            return render_template('voting_page.html',msg="Your response have submitted successfully.")
+        else:
+            return redirect(url_for("polling",pid=pid))
 
 
     @app.route("/logout")
@@ -139,5 +171,6 @@ def create_app():
         session.pop('name', None)
         session.pop('u_id', None)
         return redirect(url_for('login'))
+
 
     return app
